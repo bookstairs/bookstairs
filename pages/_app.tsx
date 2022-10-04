@@ -1,10 +1,11 @@
-import { GetServerSidePropsContext } from 'next';
 import { useState } from 'react';
-import { AppProps } from 'next/app';
-import { getCookie, setCookie } from 'cookies-next';
-import Head from 'next/head';
+
 import { MantineProvider, ColorScheme, ColorSchemeProvider } from '@mantine/core';
 import { NotificationsProvider } from '@mantine/notifications';
+import { getCookie, setCookie } from 'cookies-next';
+import { GetServerSidePropsContext } from 'next';
+import { AppProps } from 'next/app';
+import Head from 'next/head';
 
 export default function App(props: AppProps & { colorScheme: ColorScheme }) {
   const { Component, pageProps } = props;
