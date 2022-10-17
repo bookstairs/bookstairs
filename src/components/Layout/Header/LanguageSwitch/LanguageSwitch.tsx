@@ -7,8 +7,6 @@ import setLanguage from 'next-translate/setLanguage';
 import useTranslation from 'next-translate/useTranslation';
 import { useRouter } from 'next/router';
 
-import i18nConfig from '#/i18n.json';
-
 // We have to hard code the supported languages because of the limit of next-translate.
 const languageNames: Record<string, string> = {
   'en-US': 'U.S. English',
@@ -20,8 +18,8 @@ const languageNames: Record<string, string> = {
 
 export const LanguageSwitch = () => {
   // Dynamical reset the language by the saved cookie.
-  const { locale } = useRouter();
-  const cookieLocale = getCookie('bookstairs-language') || locale;
+  const { locale, locales, defaultLocale } = useRouter();
+  const cookieLocale = getCookie('bookstairs-language') || locale || defaultLocale;
   useEffect(() => {
     const redirect = async (lng: string) => {
       await setLanguage(lng);
@@ -32,7 +30,6 @@ export const LanguageSwitch = () => {
   }, [locale, cookieLocale]);
 
   const { t } = useTranslation('common');
-  const { locales } = i18nConfig;
   const changeLanguage = async (lng: string) => {
     setCookie('bookstairs-language', lng, { maxAge: 60 * 60 * 24 * 30 });
     await setLanguage(lng);
@@ -53,11 +50,12 @@ export const LanguageSwitch = () => {
 
       <Menu.Dropdown>
         <Menu.Label>{t('language')}</Menu.Label>
-        {locales.map((lng) => (
-          <Menu.Item key={lng} onClick={() => changeLanguage(lng)} disabled={lng === locale}>
-            {languageNames[lng]}
-          </Menu.Item>
-        ))}
+        {locales &&
+          locales.map((lng) => (
+            <Menu.Item key={lng} onClick={() => changeLanguage(lng)} disabled={lng === locale}>
+              {languageNames[lng]}
+            </Menu.Item>
+          ))}
       </Menu.Dropdown>
     </Menu>
   );
