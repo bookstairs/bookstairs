@@ -1,0 +1,8 @@
+{
+  "language": "語言",
+  "tooltips": {
+    "lightMode": "淺色模式",
+    "darkMode": "深色模式",
+    "switchLanguage": "切換語言"
+  }
+}

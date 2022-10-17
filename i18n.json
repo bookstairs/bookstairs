@@ -1,0 +1,17 @@
+{
+  "locales": [
+    "en-US",
+    "zh-CN",
+    "zh-HK",
+    "zh-TW",
+    "ja-JP"
+  ],
+  "defaultLocale": "en-US",
+  "localeDetection": true,
+  "loggerEnvironment": "node",
+  "pages": {
+    "*": [
+      "common"
+    ]
+  }
+}

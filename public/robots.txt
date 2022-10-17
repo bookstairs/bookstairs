@@ -1,5 +1,5 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow: /admin/
-Disallow: /read/
-Disallow: /user/
+Disallow: /api/
+Disallow: /get/
+Disallow: /upload/

@@ -1,7 +1,6 @@
 import React, { ComponentPropsWithoutRef } from 'react';
 
-import { useMantineTheme } from '@mantine/core';
-import { ColorScheme } from '@mantine/styles/lib/theme/types/ColorScheme';
+import { ColorScheme, useMantineColorScheme } from '@mantine/core';
 
 // The bookstairs loading properties.
 export interface BookStairsLoadingProps extends ComponentPropsWithoutRef<'svg'> {
@@ -10,10 +9,10 @@ export interface BookStairsLoadingProps extends ComponentPropsWithoutRef<'svg'> 
 }
 
 // Show a bookstairs logo based loading animation.
-export const BookStairsLoading = ({ width = 100, scheme, ...others }: BookStairsLoadingProps) => {
-  const theme = useMantineTheme();
+export const LoadingIcon = ({ width = 100, scheme, ...others }: BookStairsLoadingProps) => {
+  const { colorScheme } = useMantineColorScheme();
   const [leftColor, rightColor] =
-    (scheme || theme.colorScheme) === 'dark' ? ['#FFF', '#A0A3A6'] : ['#8B919A', '#3F4D5B'];
+    (scheme || colorScheme) === 'dark' ? ['#FFF', '#A0A3A6'] : ['#8B919A', '#3F4D5B'];
   return (
     <svg
       width={width}

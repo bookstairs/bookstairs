@@ -1,6 +1,6 @@
 import { Title, Text, Anchor } from '@mantine/core';
 
-import useStyles from './Welcome.styles';
+import useStyles from '@/components/Welcome/Welcome.styles';
 
 export function Welcome() {
   const { classes } = useStyles();

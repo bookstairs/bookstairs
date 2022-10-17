@@ -20,3 +20,6 @@ indent_size = 2
 [*.{js,jsx,ts,tsx,css,less,sass,scss,vue,py}]
 indent_style = space
 indent_size = 2
+
+[*.go]
+indent_size = tab
