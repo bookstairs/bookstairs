@@ -7,6 +7,8 @@ import { GetServerSidePropsContext } from 'next';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 
+import { selectedColorTheme, defaultExpiredTime } from '@/constants/Cookies';
+
 // This is used to make Typescript happy.
 type BookStairsProps = AppProps & { colorScheme: ColorScheme };
 
@@ -17,7 +19,7 @@ const BookStairsApp = (props: BookStairsProps) => {
   const toggleColorScheme = (value?: ColorScheme) => {
     const nextColorScheme = value || (colorScheme === 'dark' ? 'light' : 'dark');
     setColorScheme(nextColorScheme);
-    setCookie('bookstairs-color-scheme', nextColorScheme, { maxAge: 60 * 60 * 24 * 30 });
+    setCookie(selectedColorTheme, nextColorScheme, { maxAge: defaultExpiredTime });
   };
 
   return (
@@ -40,7 +42,7 @@ const BookStairsApp = (props: BookStairsProps) => {
 };
 
 BookStairsApp.getInitialProps = ({ ctx }: { ctx: GetServerSidePropsContext }) => ({
-  colorScheme: getCookie('bookstairs-color-scheme', ctx) || 'light',
+  colorScheme: getCookie(selectedColorTheme, ctx) || 'light',
 });
 
 export default BookStairsApp;

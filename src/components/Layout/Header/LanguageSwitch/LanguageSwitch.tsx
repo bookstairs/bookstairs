@@ -7,6 +7,8 @@ import setLanguage from 'next-translate/setLanguage';
 import useTranslation from 'next-translate/useTranslation';
 import { useRouter } from 'next/router';
 
+import { selectedLanguage, defaultExpiredTime } from '@/constants/Cookies';
+
 // We have to hard code the supported languages because of the limit of next-translate.
 const languageNames: Record<string, string> = {
   'en-US': 'U.S. English',
@@ -19,7 +21,7 @@ const languageNames: Record<string, string> = {
 export const LanguageSwitch = () => {
   // Dynamical reset the language by the saved cookie.
   const { locale, locales, defaultLocale } = useRouter();
-  const cookieLocale = getCookie('bookstairs-language') || locale || defaultLocale;
+  const cookieLocale = getCookie(selectedLanguage) || locale || defaultLocale;
   useEffect(() => {
     const redirect = async (lng: string) => {
       await setLanguage(lng);
@@ -31,7 +33,7 @@ export const LanguageSwitch = () => {
 
   const { t } = useTranslation('common');
   const changeLanguage = async (lng: string) => {
-    setCookie('bookstairs-language', lng, { maxAge: 60 * 60 * 24 * 30 });
+    setCookie(selectedLanguage, lng, { maxAge: defaultExpiredTime });
     await setLanguage(lng);
   };
 
