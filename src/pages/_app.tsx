@@ -8,6 +8,7 @@ import { AppProps } from 'next/app';
 import Head from 'next/head';
 
 import { selectedColorTheme, defaultExpiredTime } from '@/constants/Cookies';
+import { themeCache } from '@/pages/emotion';
 
 // This is used to make Typescript happy.
 type BookStairsProps = AppProps & { colorScheme: ColorScheme };
@@ -31,7 +32,12 @@ const BookStairsApp = (props: BookStairsProps) => {
       </Head>
 
       <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
-        <MantineProvider theme={{ colorScheme }} withGlobalStyles withNormalizeCSS>
+        <MantineProvider
+          theme={{ colorScheme }}
+          withGlobalStyles
+          withNormalizeCSS
+          emotionCache={themeCache}
+        >
           <NotificationsProvider>
             <Component {...pageProps} />
           </NotificationsProvider>
