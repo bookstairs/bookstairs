@@ -7,7 +7,7 @@ import { GetServerSidePropsContext } from 'next';
 import { AppProps } from 'next/app';
 import Head from 'next/head';
 
-import { selectedColorTheme, defaultExpiredTime } from '@/constants/Cookies';
+import { selectedColorTheme, defaultExpiredTime } from '@/constants/cookies';
 import { themeCache } from '@/pages/emotion';
 
 // This is used to make Typescript happy.
@@ -27,7 +27,7 @@ const BookStairsApp = (props: BookStairsProps) => {
     <>
       <Head>
         <title>BookStairs</title>
-        <meta name="viewport" content="minimum-scale=1, initial-scale=1, width=device-width" />
+        <meta name="viewport" content="initial-scale=1, width=device-width" />
         <link rel="shortcut icon" href="/favicon.svg" />
       </Head>
 

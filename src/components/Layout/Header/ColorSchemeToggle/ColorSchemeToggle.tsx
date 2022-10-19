@@ -6,7 +6,6 @@ const ColorSchemeToggle = () => {
   const { colorScheme, toggleColorScheme } = useMantineColorScheme();
   const { t } = useTranslation('common');
 
-  // TODO Unified styles for dark and night by the vercel design.
   return (
     <Tooltip label={t(colorScheme === 'dark' ? 'tooltips.lightMode' : 'tooltips.darkMode')}>
       <ActionIcon onClick={() => toggleColorScheme()} size="xl">

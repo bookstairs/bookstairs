@@ -7,7 +7,7 @@ import setLanguage from 'next-translate/setLanguage';
 import useTranslation from 'next-translate/useTranslation';
 import { useRouter } from 'next/router';
 
-import { selectedLanguage, defaultExpiredTime } from '@/constants/Cookies';
+import { selectedLanguage, defaultExpiredTime } from '@/constants/cookies';
 
 // We have to hard code the supported languages because of the limit of next-translate.
 const languageNames: Record<string, string> = {
