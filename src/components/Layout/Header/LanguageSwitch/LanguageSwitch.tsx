@@ -44,8 +44,18 @@ export const LanguageSwitch = () => {
       <Tooltip label={t('tooltips.switchLanguage')} openDelay={500}>
         <span>
           <Menu.Target>
-            <Button variant="filled" aria-label={t('tooltips.switchLanguage')} className={classes.icon}>
-              <IconLanguage size={20} stroke={1.5} />
+            <Button
+              variant="filled"
+              aria-label={t('tooltips.switchLanguage')}
+              className={classes.button}
+              sx={{
+                width: 66,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+              }}
+            >
+              <IconLanguage size={20} stroke={2} />
               <IconChevronDown size={15} />
             </Button>
           </Menu.Target>

@@ -8,8 +8,6 @@ export default function HomePage() {
     <>
       <Group position="center" mt="xl">
         <ColorSchemeToggle />
-      </Group>
-      <Group position="center" mt="xl">
         <LanguageSwitch />
       </Group>
     </>

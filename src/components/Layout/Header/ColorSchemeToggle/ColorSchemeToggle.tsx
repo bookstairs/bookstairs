@@ -11,11 +11,11 @@ const ColorSchemeToggle = () => {
 
   return (
     <Tooltip label={t(colorScheme === 'dark' ? 'tooltips.lightMode' : 'tooltips.darkMode')}>
-      <ActionIcon onClick={() => toggleColorScheme()} size="xl" className={classes.icon}>
+      <ActionIcon onClick={() => toggleColorScheme()} className={classes.button}>
         {colorScheme === 'dark' ? (
-          <IconSun size={20} stroke={1.5} />
+          <IconSun size={20} stroke={2} />
         ) : (
-          <IconMoonStars size={20} stroke={1.5} />
+          <IconMoonStars size={20} stroke={2} />
         )}
       </ActionIcon>
     </Tooltip>
