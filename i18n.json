@@ -1,12 +1,12 @@
 {
   "locales": [
-    "en-US",
+    "en",
     "zh-CN",
     "zh-HK",
     "zh-TW",
     "ja-JP"
   ],
-  "defaultLocale": "en-US",
+  "defaultLocale": "en",
   "localeDetection": true,
   "loggerEnvironment": "node",
   "pages": {

@@ -11,8 +11,9 @@ import { useStyles } from '@/components/Layout/Header/Header.styles';
 import { selectedLanguage, defaultExpiredTime } from '@/constants/cookies';
 
 // We have to hard code the supported languages because of the limit of next-translate.
+// Maybe we can just remove this in the future for dynamically loading new transactions.
 const languageNames: Record<string, string> = {
-  'en-US': 'U.S. English',
+  en: 'English',
   'ja-JP': '日本語',
   'zh-CN': '大陆简体',
   'zh-HK': '港澳繁體',

@@ -1,45 +1,57 @@
 import { useState } from 'react';
 
 import { MantineProvider, ColorScheme, ColorSchemeProvider } from '@mantine/core';
+import { useHotkeys } from '@mantine/hooks';
 import { NotificationsProvider } from '@mantine/notifications';
 import { getCookie, setCookie } from 'cookies-next';
 import App, { AppContext, AppProps, AppInitialProps } from 'next/app';
 import Head from 'next/head';
 
 import { selectedColorTheme, defaultExpiredTime } from '@/constants/cookies';
-import { themeCache } from '@/pages/emotion';
+import { emotionCache } from '@/styles/emotion';
+import { bookstairsTheme } from '@/styles/theme';
 
-// TODO Add new server side properties here.
 // This is used to make Typescript happy.
 type BookStairsProps = { colorScheme: ColorScheme };
 
-const BookStairsApp = (props: AppProps & BookStairsProps) => {
-  const { Component, pageProps } = props;
-  const [colorScheme, setColorScheme] = useState<ColorScheme>(props.colorScheme);
-
+const BookStairsApp = ({
+  Component,
+  pageProps,
+  router: { locale },
+  colorScheme,
+}: AppProps & BookStairsProps) => {
+  // Create the color theme toggle.
+  const [_colorScheme, setColorScheme] = useState<ColorScheme>(colorScheme);
   const toggleColorScheme = (value?: ColorScheme) => {
-    const nextColorScheme = value || (colorScheme === 'dark' ? 'light' : 'dark');
+    const nextColorScheme = value || (_colorScheme === 'dark' ? 'light' : 'dark');
     setColorScheme(nextColorScheme);
     setCookie(selectedColorTheme, nextColorScheme, { maxAge: defaultExpiredTime });
   };
+
+  // Add hotkeys for toggling the color scheme.
+  useHotkeys([['mod+J', () => toggleColorScheme()]]);
 
   return (
     <>
       <Head>
         <title>BookStairs</title>
+        <meta charSet="utf-8" />
         <meta name="viewport" content="initial-scale=1, width=device-width" />
         <link rel="shortcut icon" href="/favicon.svg" />
       </Head>
 
-      <ColorSchemeProvider colorScheme={colorScheme} toggleColorScheme={toggleColorScheme}>
+      <ColorSchemeProvider colorScheme={_colorScheme} toggleColorScheme={toggleColorScheme}>
         <MantineProvider
           theme={{
-            colorScheme,
+            ...bookstairsTheme,
+            colorScheme: _colorScheme,
+            // day.js only supports locale in the lower case.
+            datesLocale: (locale || 'en').toLowerCase(),
             cursorType: 'pointer',
           }}
           withGlobalStyles
           withNormalizeCSS
-          emotionCache={themeCache}
+          emotionCache={emotionCache}
         >
           <NotificationsProvider>
             <Component {...pageProps} />
