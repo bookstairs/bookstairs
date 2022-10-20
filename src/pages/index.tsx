@@ -2,7 +2,6 @@ import { Group } from '@mantine/core';
 
 import ColorSchemeToggle from '@/components/Layout/Header/ColorSchemeToggle';
 import LanguageSwitch from '@/components/Layout/Header/LanguageSwitch';
-import LoadingOverlay from '@/components/LoadingOverlay';
 
 export default function HomePage() {
   return (
@@ -13,8 +12,6 @@ export default function HomePage() {
       <Group position="center" mt="xl">
         <LanguageSwitch />
       </Group>
-
-      <LoadingOverlay visible width={100} />
     </>
   );
 }

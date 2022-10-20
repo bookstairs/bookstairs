@@ -7,6 +7,7 @@ import setLanguage from 'next-translate/setLanguage';
 import useTranslation from 'next-translate/useTranslation';
 import { useRouter } from 'next/router';
 
+import { useStyles } from '@/components/Layout/Header/Header.styles';
 import { selectedLanguage, defaultExpiredTime } from '@/constants/cookies';
 
 // We have to hard code the supported languages because of the limit of next-translate.
@@ -36,13 +37,14 @@ export const LanguageSwitch = () => {
     setCookie(selectedLanguage, lng, { maxAge: defaultExpiredTime });
     await setLanguage(lng);
   };
+  const { classes } = useStyles();
 
   return (
     <Menu position="bottom-end">
       <Tooltip label={t('tooltips.switchLanguage')} openDelay={500}>
         <span>
           <Menu.Target>
-            <Button variant="filled" aria-label={t('tooltips.switchLanguage')}>
+            <Button variant="filled" aria-label={t('tooltips.switchLanguage')} className={classes.icon}>
               <IconLanguage size={20} stroke={1.5} />
               <IconChevronDown size={15} />
             </Button>

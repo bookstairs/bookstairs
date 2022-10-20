@@ -1,11 +1,8 @@
 import React, { ComponentPropsWithoutRef } from 'react';
 
-import {
-  useMantineColorScheme,
-  createStyles,
-  LoadingOverlay as Loading,
-  keyframes,
-} from '@mantine/core';
+import { LoadingOverlay as Loading } from '@mantine/core';
+
+import { useStyles } from '@/components/LoadingOverlay/LoadingOverlay.styles';
 
 // The bookstairs loading properties.
 export interface LoadingOverlayProps extends ComponentPropsWithoutRef<'svg'> {
@@ -13,30 +10,9 @@ export interface LoadingOverlayProps extends ComponentPropsWithoutRef<'svg'> {
   visible: boolean;
 }
 
-const breathAnime = keyframes({
-  '0%': {
-    transform: 'scale(0.9)',
-  },
-  '50%': {
-    transform: 'scale(1.2)',
-  },
-  '100%': {
-    transform: 'scale(0.9)',
-  },
-});
-
-const useStyles = createStyles(() => ({
-  logo: {
-    animation: `0.819672s linear 0s infinite normal forwards running ${breathAnime}`,
-  },
-}));
-
 // This component is based on https://mantine.dev/core/loading-overlay/.
 // Show a bookstairs logo based loading animation.
 export const LoadingOverlay = ({ width = 100, visible, ...others }: LoadingOverlayProps) => {
-  const { colorScheme } = useMantineColorScheme();
-  const [leftColor, rightColor] =
-    colorScheme === 'dark' ? ['#FFF', '#A0A3A6'] : ['#8B919A', '#3F4D5B'];
   const { classes } = useStyles();
 
   const loader = (
@@ -51,31 +27,31 @@ export const LoadingOverlay = ({ width = 100, visible, ...others }: LoadingOverl
       <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
         <g transform="translate(0.000000, 188.000000)">
           <polygon
-            fill={leftColor}
+            className={classes.left}
             points="174 77.2412544 0.155121819 0 -9.17349661e-13 63.8081088 174 141.012177"
           />
           <polygon
-            fill={rightColor}
+            className={classes.right}
             points="174 77.1172148 234 47.0121771 234 110.907139 174 141.012177"
           />
         </g>
         <g transform="translate(60.000000, 94.000000)">
           <polygon
-            fill={leftColor}
+            className={classes.left}
             points="174 77.2412544 0.155121819 0 -9.17349661e-13 63.8081088 174 141.012177"
           />
           <polygon
-            fill={rightColor}
+            className={classes.right}
             points="174 77.1172148 234 47.0121771 234 110.907139 174 141.012177"
           />
         </g>
         <g transform="translate(120.000000, -0.000000)">
           <polygon
-            fill={leftColor}
+            className={classes.left}
             points="174 77.2412544 0.155121819 0 -9.17349661e-13 63.8081088 174 141.012177"
           />
           <polygon
-            fill={rightColor}
+            className={classes.right}
             points="174 77.1172148 234 47.0121771 234 110.907139 174 141.012177"
           />
         </g>
