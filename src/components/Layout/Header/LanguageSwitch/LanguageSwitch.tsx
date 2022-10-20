@@ -1,7 +1,7 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Button, Menu, Tooltip } from '@mantine/core';
-import { IconChevronDown, IconLanguage } from '@tabler/icons';
+import { IconChevronDown, IconChevronUp, IconLanguage } from '@tabler/icons';
 import { getCookie, setCookie } from 'cookies-next';
 import setLanguage from 'next-translate/setLanguage';
 import useTranslation from 'next-translate/useTranslation';
@@ -33,6 +33,10 @@ export const LanguageSwitch = () => {
     }
   }, [locale, cookieLocale]);
 
+  // State for changing the display arrow icon.
+  const [open, setOpen] = useState(false);
+
+  // Translate the languages.
   const { t } = useTranslation('common');
   const changeLanguage = async (lng: string) => {
     setCookie(selectedLanguage, lng, { maxAge: defaultExpiredTime });
@@ -41,8 +45,8 @@ export const LanguageSwitch = () => {
   const { classes } = useStyles();
 
   return (
-    <Menu position="bottom-end">
-      <Tooltip label={t('tooltips.switchLanguage')} openDelay={500}>
+    <Menu position="bottom-end" withArrow onChange={(opened: boolean) => setOpen(opened)}>
+      <Tooltip label={t('tooltips.switchLanguage')} openDelay={200}>
         <span>
           <Menu.Target>
             <Button
@@ -57,7 +61,7 @@ export const LanguageSwitch = () => {
               }}
             >
               <IconLanguage size={20} stroke={2} />
-              <IconChevronDown size={15} />
+              {open ? <IconChevronUp size={15} /> : <IconChevronDown size={15} />}
             </Button>
           </Menu.Target>
         </span>

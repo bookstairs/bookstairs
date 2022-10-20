@@ -10,7 +10,10 @@ const ColorSchemeToggle = () => {
   const { classes } = useStyles();
 
   return (
-    <Tooltip label={t(colorScheme === 'dark' ? 'tooltips.lightMode' : 'tooltips.darkMode')}>
+    <Tooltip
+      label={t(colorScheme === 'dark' ? 'tooltips.lightMode' : 'tooltips.darkMode')}
+      openDelay={200}
+    >
       <ActionIcon onClick={() => toggleColorScheme()} className={classes.button}>
         {colorScheme === 'dark' ? (
           <IconSun size={20} stroke={2} />
