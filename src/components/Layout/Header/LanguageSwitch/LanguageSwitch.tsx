@@ -2,63 +2,57 @@ import { useEffect, useState } from 'react';
 
 import { Button, Menu, Tooltip } from '@mantine/core';
 import { IconChevronDown, IconChevronUp, IconLanguage } from '@tabler/icons';
-import { getCookie, setCookie } from 'cookies-next';
 import setLanguage from 'next-translate/setLanguage';
 import useTranslation from 'next-translate/useTranslation';
 import { useRouter } from 'next/router';
 
 import { useStyles } from '@/components/Layout/Header/Header.styles';
 import { selectedLanguage, defaultExpiredTime } from '@/constants/cookies';
+import { localeNames } from '@/constants/locales';
+import { useCookie } from '@/utils/cookies';
 
-// We have to hard code the supported languages because of the limit of next-translate.
-// Maybe we can just remove this in the future for dynamically loading new transactions.
-const languageNames: Record<string, string> = {
-  en: 'English',
-  'ja-JP': '日本語',
-  'zh-CN': '大陆简体',
-  'zh-HK': '港澳繁體',
-  'zh-TW': '臺灣正體',
-};
+const cookie = useCookie<string>(selectedLanguage);
 
 export const LanguageSwitch = () => {
   // Dynamical reset the language by the saved cookie.
-  const { locale, locales, defaultLocale } = useRouter();
-  const cookieLocale = getCookie(selectedLanguage) || locale || defaultLocale;
+  const { locale, locales } = useRouter();
+  const cookieLocale = cookie.get(locale || 'en');
   useEffect(() => {
     const redirect = async (lng: string) => {
       await setLanguage(lng);
     };
     if (cookieLocale !== locale) {
-      redirect(cookieLocale as string).then();
+      redirect(cookieLocale).then();
     }
   }, [locale, cookieLocale]);
 
   // State for changing the display arrow icon.
   const [open, setOpen] = useState(false);
+  const [showTips, setShowTips] = useState(true);
 
   // Translate the languages.
   const { t } = useTranslation('common');
   const changeLanguage = async (lng: string) => {
-    setCookie(selectedLanguage, lng, { maxAge: defaultExpiredTime });
+    cookie.set(lng, { maxAge: defaultExpiredTime });
     await setLanguage(lng);
   };
-  const { classes } = useStyles();
+  const { classes, cx } = useStyles();
 
   return (
-    <Menu position="bottom-end" withArrow onChange={(opened: boolean) => setOpen(opened)}>
-      <Tooltip label={t('tooltips.switchLanguage')} openDelay={200}>
+    <Menu
+      position="bottom-end"
+      withArrow
+      onChange={(opened: boolean) => setOpen(opened)}
+      onOpen={() => setShowTips(false)}
+      onClose={() => setShowTips(true)}
+    >
+      <Tooltip label={t('tooltips.switchLanguage')} openDelay={200} disabled={!showTips}>
         <span>
           <Menu.Target>
             <Button
               variant="filled"
               aria-label={t('tooltips.switchLanguage')}
-              className={classes.button}
-              sx={{
-                width: 66,
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-              }}
+              className={cx(classes.button, classes.menu)}
             >
               <IconLanguage size={20} stroke={2} />
               {open ? <IconChevronUp size={15} /> : <IconChevronDown size={15} />}
@@ -69,12 +63,15 @@ export const LanguageSwitch = () => {
 
       <Menu.Dropdown>
         <Menu.Label>{t('language')}</Menu.Label>
-        {locales &&
-          locales.map((lng) => (
-            <Menu.Item key={lng} onClick={() => changeLanguage(lng)} disabled={lng === locale}>
-              {languageNames[lng]}
-            </Menu.Item>
-          ))}
+        {locales!.map((lng) => (
+          <Menu.Item
+            key={lng}
+            onClick={() => changeLanguage(lng)}
+            className={cx({ [classes.selectedMenuItem]: locale === lng })}
+          >
+            {localeNames[lng]}
+          </Menu.Item>
+        ))}
       </Menu.Dropdown>
     </Menu>
   );

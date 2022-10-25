@@ -3,16 +3,18 @@ import { useState } from 'react';
 import { MantineProvider, ColorScheme, ColorSchemeProvider } from '@mantine/core';
 import { useHotkeys } from '@mantine/hooks';
 import { NotificationsProvider } from '@mantine/notifications';
-import { getCookie, setCookie } from 'cookies-next';
 import App, { AppContext, AppProps, AppInitialProps } from 'next/app';
 import Head from 'next/head';
 
 import { selectedColorTheme, defaultExpiredTime } from '@/constants/cookies';
 import { emotionCache } from '@/styles/emotion';
 import { bookstairsTheme } from '@/styles/theme';
+import { useCookie } from '@/utils/cookies';
 
 // This is used to make Typescript happy.
 type BookStairsProps = { colorScheme: ColorScheme };
+
+const cookie = useCookie<ColorScheme>(selectedColorTheme);
 
 const BookStairsApp = ({
   Component,
@@ -25,7 +27,7 @@ const BookStairsApp = ({
   const toggleColorScheme = (value?: ColorScheme) => {
     const nextColorScheme = value || (_colorScheme === 'dark' ? 'light' : 'dark');
     setColorScheme(nextColorScheme);
-    setCookie(selectedColorTheme, nextColorScheme, { maxAge: defaultExpiredTime });
+    cookie.set(nextColorScheme, { maxAge: defaultExpiredTime });
   };
 
   // Add hotkeys for toggling the color scheme.
@@ -46,7 +48,7 @@ const BookStairsApp = ({
             ...bookstairsTheme,
             colorScheme: _colorScheme,
             // day.js only supports locale in the lower case.
-            datesLocale: (locale || 'en').toLowerCase(),
+            datesLocale: locale || 'en',
             cursorType: 'pointer',
           }}
           withGlobalStyles
@@ -65,7 +67,7 @@ const BookStairsApp = ({
 BookStairsApp.getInitialProps = async (
   appContext: AppContext
 ): Promise<BookStairsProps & AppInitialProps> => {
-  const colorScheme = (getCookie(selectedColorTheme, appContext.ctx) || 'light') as ColorScheme;
+  const colorScheme = cookie.get('light', appContext.ctx);
 
   // calls page's `getInitialProps` and fills `appProps.pageProps`
   const appProps = await App.getInitialProps(appContext);

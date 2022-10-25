@@ -18,4 +18,14 @@ export const useStyles = createStyles((theme) => ({
       backgroundColor: theme.colorScheme === 'dark' ? theme.colors.dark[3] : theme.colors.gray[0],
     },
   },
+  menu: {
+    width: 66,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  selectedMenuItem: {
+    backgroundColor: theme.colorScheme === 'light' ? theme.colors.gray[0] : theme.colors.dark[4],
+    fontWeight: 'bold',
+  },
 }));

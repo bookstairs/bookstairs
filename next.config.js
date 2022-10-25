@@ -1,8 +1,11 @@
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
+const bundleAnalyzer = require('@next/bundle-analyzer')({
   enabled: process.env.ANALYZE === 'true'
 });
 
-const withNextTranslate = require('next-translate')
+const nextTranslate = require('next-translate');
+
+// Compose all the plugins one by one.
+const plugins = [bundleAnalyzer, nextTranslate];
 
 /** @type {import('next').NextConfig} */
 const bookstairsConfig = {
@@ -30,4 +33,4 @@ const bookstairsConfig = {
   }
 };
 
-module.exports = withNextTranslate(withBundleAnalyzer(bookstairsConfig));
+module.exports = plugins.reduce((config, plugin) => plugin(config), bookstairsConfig)
