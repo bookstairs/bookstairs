@@ -24,7 +24,7 @@ Although bluge isn't fast enough compared to elasticsearch, it's fast enough to 
 
 The books' category is defined by
 the [Chinese Library Classification](https://en.wikipedia.org/wiki/Chinese_Library_Classification).
-Putting all the files into [SeaweedFS](https://github.com/chrislusf/seaweedfs) for fast file acess.
+Putting all the files into [SeaweedFS](https://github.com/chrislusf/seaweedfs) for fast file access.
 This will make the S3 support out of box.
 
 * __Better book deduplication__
@@ -61,7 +61,7 @@ patches and the contribution workflow.
 
 ## License
 
-BookStairs is licensed under the AGPL-3.0. You are free to use this project, but the only thing you need to do is to
-share your modifications.
+BookStairs is licensed under the AGPL-3.0. You are free to use this or modify project,
+but the only thing you need to do is to share your modifications.
 
 See the [LICENSE](LICENSE) file for details.
