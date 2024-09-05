@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="354px" height="329px" viewBox="0 0 354 329" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <g id="Favicon" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="LOGO" transform="translate(0.000000, -0.012177)">
+            <g id="Stair" transform="translate(0.000000, 188.000000)">
+                <polygon id="Rectangle" fill="#8BB4F7" points="174 77.2412544 0.155121819 0 -9.17349661e-13 63.8081088 174 141.012177"/>
+                <polygon id="Rectangle" fill="#004E9E" points="174 77.1172148 234 47.0121771 234 110.907139 174 141.012177"/>
+            </g>
+            <g id="Stair" transform="translate(120.000000, 0.000000)">
+                <polygon id="Rectangle" fill="#8BB4F7" points="174 77.2412544 0.155121819 0 -1.14472334e-12 63.8081088 174 141.012177"/>
+                <polygon id="Rectangle" fill="#004E9E" points="174 77.3406102 233.578593 47.3408285 233.578593 111.012395 174 141.012177"/>
+            </g>
+            <g id="Stair" transform="translate(60.000000, 94.000000)">
+                <polygon id="Rectangle" fill="#8BB4F7" points="174 77.2412544 0.155121819 0 -1.0310365e-12 63.8081088 174 141.012177"/>
+                <polygon id="Rectangle" fill="#004E9E" points="174 77.1172148 234 47.0121771 234 110.907139 174 141.012177"/>
+            </g>
+        </g>
+    </g>
+</svg>
