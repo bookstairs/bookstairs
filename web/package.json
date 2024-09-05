@@ -17,6 +17,8 @@
     "@biomejs/biome": "^1.8.3",
     "@rsbuild/core": "1.0.1-rc.4",
     "@rsbuild/plugin-react": "1.0.1-rc.4",
+    "@rsbuild/plugin-svgr": "^1.0.1-rc.4",
+    "@rsbuild/plugin-type-check": "^1.0.1-rc.4",
     "@types/node": "^22.5.4",
     "@types/react": "^18.3.5",
     "@types/react-dom": "^18.3.0",

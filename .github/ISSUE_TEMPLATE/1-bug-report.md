@@ -5,11 +5,11 @@ about: Create a report to help us improve
 ---
 
 <!--
-Thank you for reporting a possible bug in bookhunter.
+Thank you for reporting a possible bug in bookstairs.
 
 Please fill in as much of the template below as you can.
 
-Version: output of `bookhunter version`
+Version: output of `bookstairs version`
 Platform: output of `uname -a` (UNIX), or version and 32 or 64-bit (Windows)
 
 If possible, please provide code that demonstrates the problem, keeping it as

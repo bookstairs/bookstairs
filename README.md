@@ -1,5 +1,7 @@
-![BookStairs Poster](docs/images/github-poster.png#gh-light-mode-only)
-![BookStairs Poster](docs/images/github-poster-dark.png#gh-dark-mode-only)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/images/github-poster-dark.png">
+  <img alt="BookStairs Poster" src="docs/images/github-poster.png">
+</picture>
 
 [![LICENSE](https://img.shields.io/github/license/bookstairs/bookstairs)](https://github.com/bookstairs/bookstairs/blob/master/LICENSE)
 [![contribution](https://img.shields.io/badge/contributions-welcome-brightgreen.svg?style=flat)](CONTRIBUTING.md)
