@@ -1,0 +1,66 @@
+{
+  "name": "bookstairs",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Yet another ebook library",
+  "keywords": [
+    "calibre",
+    "ebook",
+    "epub",
+    "mobi"
+  ],
+  "homepage": "https://bookstairs.net",
+  "bugs": {
+    "url": "https://github.com/bookstairs/bookstairs/issues",
+    "email": "syhily@gmail.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bookstairs/bookstairs.git"
+  },
+  "license": "MIT",
+  "author": {
+    "name": "Yufan Sheng",
+    "email": "syhily@gmail.com",
+    "url": "https://yufan.me"
+  },
+  "scripts": {
+    "build": "cross-env NODE_ENV=production react-router build",
+    "dev": "react-router dev",
+    "lint": "biome check --write . && prettier . --write",
+    "start": "cross-env NODE_ENV=production react-router-serve ./build/server/index.js",
+    "typecheck": "react-router typegen && tsc"
+  },
+  "lint-staged": {
+    "**/*": [
+      "biome check --no-errors-on-unmatched --files-ignore-unknown=true",
+      "prettier --write --ignore-unknown"
+    ]
+  },
+  "dependencies": {
+    "@react-router/node": "^7.0.2",
+    "@react-router/serve": "^7.0.2",
+    "isbot": "^5.1.17",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-router": "^7.0.2"
+  },
+  "devDependencies": {
+    "@biomejs/biome": "1.9.4",
+    "@react-router/dev": "^7.0.2",
+    "@trivago/prettier-plugin-sort-imports": "^5.2.0",
+    "@types/node": "^22",
+    "@types/react": "^19.0.1",
+    "@types/react-dom": "^19.0.2",
+    "autoprefixer": "^10.4.20",
+    "cross-env": "^7.0.3",
+    "husky": "^9.1.7",
+    "postcss": "^8.4.49",
+    "prettier": "^3.4.2",
+    "tailwindcss": "^3.4.16",
+    "typescript": "^5.7.2",
+    "vite": "^5.4.11",
+    "vite-tsconfig-paths": "^5.1.4"
+  }
+}
